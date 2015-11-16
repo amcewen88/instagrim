@@ -1,29 +1,29 @@
 <%-- 
     Document   : index
     Created on : Sep 28, 2014, 7:01:44 PM
-    Author     : Administrator
+    Author     : Administrator modified by Aaron McEwen
 --%>
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="uk.ac.dundee.computing.aec.instagrim.stores.*" %>
+<%@page import="uk.ac.dundee.computing.aec.instaaron.stores.*" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Instagrim</title>
+        <title>InstAaron</title>
         <link rel="stylesheet" type="text/css" href="Styles.css" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
         <header>
-            <h1>InstaGrim ! </h1>
-            <h2>Your world in Black and White</h2>
+            <h1>InstAaron </h1>
+            <h2>Your world in Black and White!</h2>
         </header>
         <nav>
             <ul>
 
                
-                <li><a href="upload.jsp">Upload</a></li>
+                <li><a href="/InstAaron/upload.jsp">Upload</a></li>
                     <%
                         
                         LoggedIn lg = (LoggedIn) session.getAttribute("LoggedIn");
@@ -32,7 +32,9 @@
                             if (lg.getlogedin()) {
                     %>
 
-                <li><a href="/Instagrim/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li><a href="/InstAaron/Images/<%=lg.getUsername()%>">Your Images</a></li>
+                <li><a href="/InstAaron/profile.jsp">Your Profile</a></li>
+                <li><a href="/InstAaron/Logout">Log Out</a></li>
                     <%}
                             }else{
                                 %>
@@ -46,7 +48,7 @@
         </nav>
         <footer>
             <ul>
-                <li class="footer"><a href="/Instagrim">Home</a></li>
+                <li class="footer"><a href="/InstAaron">Home</a></li>
                 <li>&COPY; Andy C</li>
             </ul>
         </footer>

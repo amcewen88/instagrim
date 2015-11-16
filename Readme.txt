@@ -1,4 +1,4 @@
-Instagrim  is an example web app using Cassandra as a back end.   The app allows picture uploads, creates a thumbnail and 
+﻿Instagrim  is an example web app using Cassandra as a back end.   The app allows picture uploads, creates a thumbnail and 
 a  B/W version of the picture, and a simple login.
 
 See Keyspaces.java for a definition of the keyspaces.
@@ -34,3 +34,13 @@ Some ideas for added functionality you might like to add (not all are simple, yo
 
 This is not a limit to what you could do, use your imagination !
 
+
+Changes made:
+1. Changed project name, artifactid, folder name to "InstAaron".
+2. Added a logout.jsp page and logout.java.
+3. Refactored packages to uk.ac.dundee.computing.aec.instaaron.*.
+4. Corrected spelling mistake in register.jsp <input type="submit" value="Register">
+5. Changed URLs to /Instaaron on all .jsp pages.
+6. Slightly extended the registration process.
+7. Modified LoggedIn.java, User.java.
+8. Beginnings of a profile page, profile.jsp.

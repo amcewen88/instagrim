@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package uk.ac.dundee.computing.aec.instagrim.servlets;
+package uk.ac.dundee.computing.aec.instaaron.servlets;
 
 import com.datastax.driver.core.Cluster;
 import java.io.IOException;
@@ -16,25 +16,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import uk.ac.dundee.computing.aec.instagrim.lib.CassandraHosts;
-import uk.ac.dundee.computing.aec.instagrim.models.User;
-import uk.ac.dundee.computing.aec.instagrim.stores.LoggedIn;
+import uk.ac.dundee.computing.aec.instaaron.lib.CassandraHosts;
+import uk.ac.dundee.computing.aec.instaaron.models.User;
 
 /**
  *
  * @author Administrator
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
-
+@WebServlet(name = "Register", urlPatterns = {"/Register"})
+public class Register extends HttpServlet {
     Cluster cluster=null;
-
-
     public void init(ServletConfig config) throws ServletException {
         // TODO Auto-generated method stub
         cluster = CassandraHosts.getCluster();
     }
+
+
+
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -47,29 +45,23 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         String username=request.getParameter("username");
         String password=request.getParameter("password");
+        String firstname=request.getParameter("firstname");
+        String lastname=request.getParameter("lastname");
+        String email=request.getParameter("email");
+        String houseno=request.getParameter("houseno");
+        String street=request.getParameter("street");
+        String city=request.getParameter("city");
+        //int zip=request.getParameter("zip"); // fix for Integer?
         
         User us=new User();
         us.setCluster(cluster);
-        boolean isValid=us.IsValidUser(username, password);
-        HttpSession session=request.getSession();
-        System.out.println("Session in servlet "+session);
-        if (isValid){
-            LoggedIn lg= new LoggedIn();
-            lg.setLogedin();
-            lg.setUsername(username);
-            //request.setAttribute("LoggedIn", lg);
-            
-            session.setAttribute("LoggedIn", lg);
-            System.out.println("Session in servlet "+session);
-            RequestDispatcher rd=request.getRequestDispatcher("index.jsp");
-	    rd.forward(request,response);
-            
-        }else{
-            response.sendRedirect("/Instagrim/login.jsp");
-        }
+        //send to RegisterUser method in User
+        //added firstname, lastname, still to add email and profile pic
+        us.RegisterUser(username, password, firstname, lastname, email, houseno, street, city);
+        
+	response.sendRedirect("/InstAaron"); //redirect to index.jsp
         
     }
 
